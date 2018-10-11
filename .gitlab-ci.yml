@@ -16,7 +16,7 @@ stages:
 pages:
     stage: gitlabPages
     script:
-        - hugo -t cocoa
+        - hugo -t cocoa --baseURL="https://lzane.gitlab.io/lzane-blog"
     artifacts:
         paths:
             - public
