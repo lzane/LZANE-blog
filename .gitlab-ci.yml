@@ -3,14 +3,14 @@ image: monachus/hugo
 
 stages:
     - gitlabPages
-    - deploy
+    # - deploy
 
-deploy:
-    stage: deploy
-    script:
-        - hugo -t cocoa
-    only:
-        - master
+# deploy:
+#     stage: deploy
+#     script:
+#         - hugo -t cocoa
+#     only:
+#         - master
 
 pages:
     stage: gitlabPages
