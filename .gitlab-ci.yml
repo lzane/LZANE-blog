@@ -1,4 +1,5 @@
 stages:
+    - gitlabPages
     - deploy
 
 deploy:
@@ -10,6 +11,7 @@ deploy:
         - master
 
 pages:
+    stage: gitlabPages
     script:
         - hugo -t cocoa
     artifacts:
