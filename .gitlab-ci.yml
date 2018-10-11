@@ -1,10 +1,19 @@
 stages:
-  - deploy
+    - deploy
 
 deploy:
-  stage: deploy
-  image: monachus/hugo
-  script:
-    - hugo -t cocoa
-  only:
-    - master
+    stage: deploy
+    image: monachus/hugo
+    script:
+        - hugo -t cocoa
+    only:
+        - master
+
+pages:
+    script:
+        - hugo -t cocoa
+    artifacts:
+        paths:
+            - public
+    only:
+        - master
