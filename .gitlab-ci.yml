@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image: monachus/hugo
+  script:
+    - hugo -t cocoa
+  only:
+    - master
