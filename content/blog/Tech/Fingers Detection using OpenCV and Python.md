@@ -38,7 +38,7 @@ aliases:
 
 Capture video from camera and pick up a frame.
 
-![1](https://qncdnssl.lzane.com/2018-10-11-1.png)
+![1](https://qncdnssl.lzane.com/2018-10-11-1.png#small)
 
 
 #### Capture background model & Background subtraction
@@ -68,7 +68,7 @@ res = cv2.bitwise_and(frame, frame, mask=fgmask)
 
 Get the foreground(hand) image
 
-![2](https://qncdnssl.lzane.com/2018-10-11-2.png)
+![2](https://qncdnssl.lzane.com/2018-10-11-2.png#small)
 
 
 #### Gaussian blur & Threshold
@@ -82,7 +82,7 @@ blur = cv2.GaussianBlur(gray, (blurValue, blurValue), 0)
 ```
 By Gaussian blurring, we create smooth transition from one color to another and reduce the edge content.
 
-![3](https://qncdnssl.lzane.com/2018-10-11-3.png)
+![3](https://qncdnssl.lzane.com/2018-10-11-3.png#small)
 
 
 
@@ -91,7 +91,7 @@ ret, thresh = cv2.threshold(blur, threshold, 255, cv2.THRESH_BINARY)
 ```
 We use thresholding to create binary images from grayscale images. 
 
-![4](https://qncdnssl.lzane.com/2018-10-11-4.png)
+![4](https://qncdnssl.lzane.com/2018-10-11-4.png#small)
 
 
 #### Contour & Hull & Convexity 
@@ -108,7 +108,7 @@ hull = cv2.convexHull(res)
 defects = cv2.convexityDefects(res, hull)
 ```
 
-![5](https://qncdnssl.lzane.com/2018-10-11-5.png)
+![5](https://qncdnssl.lzane.com/2018-10-11-5.png#small)
 
 
 Now we have the number of fingers. How to use this information? It's based on your imagination...
