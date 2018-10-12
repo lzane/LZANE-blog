@@ -6,8 +6,7 @@ tags:
 - Tech
 - OpenCV
 - CV
-aliases:
-    - /fingers-detection-using-opencv-and-python
+url: fingers-detection-using-opencv-and-python
 ---
 
 ## Environment
