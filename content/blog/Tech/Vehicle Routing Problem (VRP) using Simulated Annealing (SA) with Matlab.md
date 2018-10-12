@@ -5,8 +5,7 @@ draft: false
 tags:
     - Tech
     - Algorithm
-aliases:
-    - /mo-ni-tui-huo-vehicle-routing-problem-vrp-using-simulated-annealing-sa-with-matlab
+url: mo-ni-tui-huo-vehicle-routing-problem-vrp-using-simulated-annealing-sa-with-matlab
 ---
 
 使用Matlab用模拟退火（SA）解决VRP问题。首先什么是VRP问题？
