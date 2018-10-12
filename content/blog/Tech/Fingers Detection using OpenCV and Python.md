@@ -1,5 +1,5 @@
 ---
-title: "Fingers Detection using OpenCV and Python | 简单的手势识别"
+title: "简单的手势识别 | Fingers Detection using OpenCV and Python"
 date: 2016-05-22T06:17:27+08:00
 draft: false
 tags:
