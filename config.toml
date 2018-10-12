@@ -16,7 +16,6 @@ copyright = "Everything is mine"
 
 [permalinks]
 blog  = "blog/:slug/"
-code  = "code/:slug/"
 
 [[menu.main]]
 name                   = "Blog"
@@ -25,10 +24,17 @@ identifier             = "blog"
 url                    = "blog/"
 
 [[menu.main]]
-name                   = "About"
+name                   = "Project"
 weight                 = -110
+identifier             = "project"
+url                    = "project/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -100
 identifier             = "about"
 url                    = "about/"
+
 
 [params]
 include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
