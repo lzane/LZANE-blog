@@ -3,7 +3,8 @@ title: "Fingers Detection using OpenCV and Python | 简单的手势识别"
 date: 2016-05-22T06:17:27+08:00
 draft: false
 tags:
-- opencv
+- Tech
+- OpenCV
 - CV
 aliases:
     - /fingers-detection-using-opencv-and-python
