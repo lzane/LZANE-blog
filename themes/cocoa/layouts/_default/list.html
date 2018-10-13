@@ -10,7 +10,8 @@
             <nav class="section-items">
                 <ul>
                 {{ range .ByWeight }}
-                    <li><a {{ printf "href=%q" .URL | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li>
+                    {{ partial "li.html" . }}
+                    <!-- <li><a {{ printf "href=%q" .URL | safeHTMLAttr }}>{{ default .Title .Params.heading }}</a></li> -->
                 {{ end }}
                 </ul>
             </nav>
