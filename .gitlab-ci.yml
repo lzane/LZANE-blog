@@ -4,14 +4,7 @@ variables:
 
 stages:
     - gitlabPages
-    # - deploy
-
-# deploy:
-#     stage: deploy
-#     script:
-#         - hugo -t cocoa
-#     only:
-#         - master
+    - deploy
 
 pages:
     stage: gitlabPages
@@ -20,5 +13,12 @@ pages:
     artifacts:
         paths:
             - public
+    only:
+        - master
+
+deploy:
+    stage: deploy
+    script:
+        - curl -X POST -d '' https://api.netlify.com/build_hooks/5bc1b06667610c2a03e9db36        
     only:
         - master
