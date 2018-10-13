@@ -4,7 +4,7 @@ variables:
 
 stages:
     - gitlabPages
-    - deploy
+    # - deploy
 
 pages:
     stage: gitlabPages
