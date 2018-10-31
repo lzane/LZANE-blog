@@ -5,5 +5,5 @@ draft: false
 url: 'about'
 ---
 
-Another software developer
+Just another software engineer
 
