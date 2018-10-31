@@ -15,19 +15,27 @@ hasCJKLanguage      = true
 copyright = "Everything is mine"
 
 [permalinks]
-blog  = "blog/:slug/"
+tech = "tech/:slug/"
+life = "life/:slug/"
 
 [[menu.main]]
-name                   = "Blog"
+name                   = "Tech"
 weight                 = -120
-identifier             = "blog"
-url                    = "blog/"
+identifier             = "tech"
+url                    = "tech/"
+
+[[menu.main]]
+name                   = "Life"
+weight                 = -110
+identifier             = "life"
+url                    = "life/"
 
 [[menu.main]]
 name                   = "Project"
-weight                 = -110
+weight                 = -105
 identifier             = "project"
 url                    = "project/"
+
 
 [[menu.main]]
 name                   = "About"
@@ -35,8 +43,16 @@ weight                 = -100
 identifier             = "about"
 url                    = "about/"
 
+[[menu.main]]
+name                   = "Contact"
+weight                 = -90
+identifier             = "contact"
+url                    = "contact/"
+
+
 
 [params]
+mainSections = ["tech","life"]
 include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
 latestpostscount       = 5                             # how many posts to display on the home page
 i18n_flags             = false                         # whether to display small country flags for available translations
