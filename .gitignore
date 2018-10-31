@@ -1,3 +1,5 @@
 public
 .DS_Store
 /.MWebMetaData
+/deploy.sh
+/deploy.py
