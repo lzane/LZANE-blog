@@ -7,16 +7,16 @@
                     {{ .Content }}
                 </div>
             {{ end }}
-            {{ $totalpostscount := len (where .Data.Pages "Section" "blog") }}
+            {{ $totalpostscount := len (where .Data.Pages "Section" "in" .Site.Params.mainSections) }}
             {{ $latestpostscount := .Site.Params.latestpostscount | default $totalpostscount }}
             {{ if gt $latestpostscount 0 }}
                 <div class="page-heading">{{ i18n "latestPosts" }}</div>
                 <ul>
-                    {{ range (first $latestpostscount (where .Data.Pages.ByPublishDate.Reverse "Section" "blog")) }}
+                    {{ range (first $latestpostscount (where .Data.Pages "Section" "in" .Site.Params.mainSections)) }}
                         {{ partial "li.html" . }}
                     {{ end }}
                     {{ if gt $totalpostscount $latestpostscount }}
-                        {{ range where .Site.Menus.main "Identifier" "blog" }}
+                        {{ range where .Site.Menus.main "Identifier" "in" .Site.Params.mainSections }}
                             <li class="post-item no-bullet">
                                 <a id="see-more" {{ printf "href=%q " .URL | safeHTMLAttr }}><span>See more&hellip;</span></a>
                             </li>
