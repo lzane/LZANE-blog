@@ -8,6 +8,7 @@
 <section class="header">
     <div class="container">
         <div class="content">
+            <div class="avatar-header">
             {{ if .Site.Params.gravatar }}
             <a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><img class="avatar" src="https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=50" rcset="https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=100 2x, https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=150 3x, https://gravatar.com/avatar/{{ .Site.Params.gravatar }}?s=200 4x"></a>
             {{ else if .Site.Params.avatar }}
@@ -23,10 +24,14 @@
                 {{ $srcset := delimit ($.Scratch.Get "srcset") "," }}
                 <a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><img class="avatar" src="/{{ .Site.Params.avatar }}" {{ printf "srcset=%q" $srcset | safeHTMLAttr }}></a>
             {{ end }}
+
+            <div class="avatar-header-content">
             <a {{ printf "href=%q" ("/" | relLangURL) | safeHTMLAttr }}><div class="name">{{ .Site.Params.author }}</div></a>
             {{ if .Site.Params.selfintro }}
               <h3 class="self-intro">{{ .Site.Params.selfintro }}</h3>
             {{ end }}
+            </div>
+            </div>
             <nav>
                 <ul>
                     {{ range .Site.Menus.main }}

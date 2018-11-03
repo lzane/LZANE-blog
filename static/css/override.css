@@ -16,7 +16,7 @@ img[src$="#small"] {
 }
 
 section.main .content .page-heading {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
 }
 
 section.main .container .content .post-item {
@@ -28,4 +28,23 @@ section.main .container .content .post-item {
     section {
         max-width: 800px;
     }    
+}
+
+.container{
+    margin: 0;
+}
+
+.avatar-header{
+    display:flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.avatar-header-content{
+    margin-left: 10px;
+}
+
+section.header h3.self-intro{
+    margin-bottom: unset;
+    font-size: 1rem;
 }
