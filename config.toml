@@ -6,7 +6,7 @@ layoutdir           = "layouts"
 publishdir          = "public"
 theme               = "cocoa"
 author              = "zane"
-title               = "Lzane - Be all you can be!"
+title               = "李泽帆 | LZANE"
 pygmentsuseclasses  = true
 disqusshortname     = "lzane" # Comment out to disable Disqus.
 pluralizelisttitles = false
@@ -43,24 +43,19 @@ weight                 = -100
 identifier             = "about"
 url                    = "about/"
 
-[[menu.main]]
-name                   = "Contact"
-weight                 = -90
-identifier             = "contact"
-url                    = "contact/"
 
 
 
 [params]
-mainSections = ["tech","life"]
+mainSections = ["tech"]
 include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
 latestpostscount       = 5                             # how many posts to display on the home page
 i18n_flags             = false                         # whether to display small country flags for available translations
-author                 = "lzane | 李泽帆"
+author                 = "李泽帆 | lzane"
 cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
 dateform               = "Jan 2, 2006"
 dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
-description            = "Be all you can be!"
+description            = "李泽帆(LZANE)，专注于分享前端开发和数据科学。不止前端，竭尽所能。Software Engineer | Dedicated to Web Development and Data Science. | Permanent beta learner"
 email                  = "cn.zanelee@gmail.com"
 extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
 faviconfile            = "img/leaf.ico"
@@ -70,7 +65,7 @@ github                 = "//github.com/lzane"
 lang                   = "en"
 linkedin               = "//linkedin.com/in/lzane"
 noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
-selfintro              = ""                            # appears in the site header when set to a non-empty string
+selfintro              = "不止前端，竭尽所能。"                            # appears in the site header when set to a non-empty string
 # twitter                = "//twitter.com/you"
 # mastodon               = "//example.com/@you"
 telegram               = "//t.me/lzane"
