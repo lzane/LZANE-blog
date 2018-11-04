@@ -37,6 +37,8 @@ section.main .container .content .post-item {
 
 .container{
     margin: 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .avatar-header{
