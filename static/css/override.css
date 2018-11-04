@@ -1,6 +1,11 @@
 code {
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
+
+section.main .content .markdown pre {
+    white-space: pre;
+}
+
 
 iframe{
     width: 100%;
