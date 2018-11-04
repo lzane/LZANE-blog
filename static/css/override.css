@@ -10,8 +10,9 @@ section.header nav {
     font-size: 1rem;
 }
 
-section.main .content .markdown pre {
+section.main .content .markdown pre code{
     white-space: pre;
+    overflow-wrap: normal;
 }
 
 section.main .content .markdown h3 {
