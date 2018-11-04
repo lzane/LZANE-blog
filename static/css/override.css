@@ -2,6 +2,10 @@ code {
     /* white-space: nowrap; */
 }
 
+html,body {
+    font-family: -apple-system, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
+}
+
 section.header nav {
     font-size: 1rem;
 }
@@ -26,6 +30,7 @@ section.main .container .content .post-item .meta {
 
 section.main .content {
     font-size: 1.2rem;
+    line-height: 1.75;
 }
 
 section.main .content .markdown p {
