@@ -235,8 +235,8 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 相信看完这篇文章，如果你已经对React事件系统有所理解，这道题应该是不难了。
 
-1. 因为React事件监听是挂载在document上的，所以原生系统在`#outer`上监听的回调`B`会最先被执行；接着原生事件冒泡至document进入React事件系统，React事件系统模拟捕获冒泡输出`A`和`B`；最后React事件系统执行完毕回到浏览器继续冒泡到window，输出`D`。
-2. 原生系统在`#outer`上监听的回调`B`会最先被执行；接着原生事件冒泡至document进入React事件系统，在React事件处理中`#inner`调用了`stopPropagation`，事件被停止冒泡。
+1. 因为React事件监听是挂载在document上的，所以原生系统在`#outer`上监听的回调`C`会最先被输出；接着原生事件冒泡至document进入React事件系统，React事件系统模拟捕获冒泡输出`A`和`B`；最后React事件系统执行完毕回到浏览器继续冒泡到window，输出`D`。
+2. 浏览器在`#outer`上监听原生事件的回调`C`会最先被执行；接着原生事件冒泡至document进入React事件系统，输出`A`，在React事件处理中`#inner`调用了`stopPropagation`，事件被停止冒泡。
 
 所以，最好**不要混用React事件系统和原生事件系统**，如果混用了，请保证你清楚知道会发生什么。
 
