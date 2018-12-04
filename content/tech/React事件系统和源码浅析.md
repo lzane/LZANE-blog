@@ -20,6 +20,8 @@ tags:
 - 如果你有半个小时，你可以按顺序往下阅读，忽略源码部分。
 - 如果你对React事件系统有较大的兴趣，那么推荐你clone一份React的源码(本文列举的源码来自[v16.5.0](https://github.com/facebook/react/tree/v16.5.0)),然后按照顺序依次往下阅读。
 
+## 更新
+- 2018-12-01 根据读者反馈，润色了一些语言和修改一些typo。
 
 ## 开始
 
@@ -140,7 +142,7 @@ class App extends React.Component {
 
 其次React合成的`SyntheticEvent`采用了**池**的思想，从而达到节约内存，避免频繁的创建和销毁事件对象的目的。这也是如果我们需要异步使用一个`syntheticEvent`，需要执行`event.persist()`才能防止事件对象被释放的原因。
 
-最后在React源码中随处可见batch做**批量更新**，基本上凡是可以批量处理的事情（最普遍的`setState`）React都会将中间过程保存起来，留到最后面才flush掉。就如浏览器对DOM树进行Style，Layout，Paint一样，都不会在操作`ele.style.color='red';`之后马上执行，只会将这些操作打包起来并最终在需要渲染的时候再做渲染。
+最后在React源码中随处可见batch做**批量更新**，基本上凡是可以批量处理的事情（最普遍的`setState`）React都会将中间过程保存起来，留到最后面flush（渲染，并最终提交到DOM树上）掉。就如浏览器对DOM树进行Style，Layout，Paint一样，都不会在操作`ele.style.color='red';`之后马上执行，只会将这些操作打包起来并最终在需要渲染的时候再做渲染。
 
 ```js
 ele.style.color='red'; 
@@ -156,7 +158,7 @@ ele.style.color='red';
 
 ![react事件ppt.005](https://qncdnssl.lzane.com/2018-11-04-react%E4%BA%8B%E4%BB%B6ppt.005.jpeg)
 
-简单而言，就与jQuery帮助我们解决了不同浏览器之间的兼容问一样，React更进一步，还帮我们统一了不同平台的兼容，使我们在开发的时候只需要考虑标准化的事件即可。
+简单而言，就与jQuery帮助我们解决了不同浏览器之间的兼容问一样，React更进一步，还帮我们统一了不同平台的兼容，使我们在开发的时候只需要考虑一个标准类型的事件即可。
 
 ## React的事件系统是怎么运作起来的？
 
@@ -166,14 +168,13 @@ ele.style.color='red';
 
 ![](https://qncdnssl.lzane.com/2018-11-04-15413164011795.jpg)
 
-React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapturedEvent`这两个函数来注册的。如上图所示，当我们执行了`render`或者`setState`之后，React的Fiber调度系统会在最后commit到DOM树之前执行`trapBubbledEven`或`trapCapturedEvent`，
-通过执行`addEventListener`在document结点上绑定对应的`dispatch`作为handler负责监听类型为`topLevelType`的事件。
+React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapturedEvent`这两个函数来注册的。如上图所示，当我们执行了`render`或者`setState`之后，React的Fiber调度系统会在最后commit到DOM树之前执行`trapBubbledEven`或`trapCapturedEvent`，在document节点上绑定回调（通过执行`addEventListener`在document结点上绑定对应的`dispatch`函数作为回调负责监听类型为`topLevelType`的事件）。
 
-这里面的`dispatchInteractiveEvent`和`dispatchEvent`两个回调函数的区别为，React16开始换掉了原本Stack Reconciliation成Fiber希望实现异步渲染（目前仍未默认打开，仍需使用`unstable_`开头的api，此特性与例子2有关，将在[文章最后配图解释](#额外多说一个点-setstate是异步的)），所以异步渲染的情况下加入我点了两次按钮，那么第二次按钮响应的时候，可能第一次按钮的handlerA中调用的`setState`还未最终被commit到DOM树上，这时需要把第一次按钮的结果先给flush掉并commit到DOM树，才能够保持一致性。这个时候就会用到`dispatchInteractiveEvent`。可以理解成`dispatchInteractiveEvent`在执行前都会确保之前所有操作都已最总commit到DOM树，再开始自己的流程，并最终触发`dispatchEvent`。但由于目前React仍是同步渲染的，所以这两个函数在目前的表现是一致的，希望React17会带给我们默认打开的异步渲染功能。
+这里面的`dispatchInteractiveEvent`和`dispatchEvent`两个回调函数的区别为，React16开始换掉了原本Stack Reconciliation成Fiber希望实现异步渲染（目前仍未默认打开，仍需使用`unstable_`开头的api，此特性与例子2有关，将在[文章最后配图解释](#额外多说一个点-setstate是异步的)），所以异步渲染的情况下假如我点了两次按钮，那么第二次按钮响应的时候，可能第一次按钮的handlerA中调用的`setState`还未最终被commit到DOM树上，这时需要把第一次按钮的结果先给flush掉并commit到DOM树，才能够保持一致性。这个时候就会用到`dispatchInteractiveEvent`。可以理解成`dispatchInteractiveEvent`在执行前都会确保之前所有操作都已最总commit到DOM树，再开始自己的流程，并最终触发`dispatchEvent`。但由于目前React仍是同步渲染的，所以这两个函数在目前的表现是一致的，希望React17会带给我们默认打开的异步渲染功能。
 
 到现在我们已经在document结点上监听了事件了，现在需要来看如何将我们在jsx中写的handler存起来对应到相应的结点上。
 
-在我们每次新建或者更新结点时，React最终会调用`createInstance`或者`commitUpdate`这两个函数，而这两个函数都会最终调用`updateFiberProps`这个函数，将`props`也就是我们的`onClick`，`onChange`等handler给存到DOM结点上。
+在我们每次新建或者更新结点时，React会调用`createInstance`或者`commitUpdate`这两个函数，而这两个函数都会最终调用`updateFiberProps`这个函数，将`props`也就是我们的`onClick`，`onChange`等handler给存到DOM结点上。
 
 至此，我们我们已经在document上监听了事件，并且将handler存在对应DOM结点。接下来需要看React怎么监听并处理浏览器的原生事件，最终触发对应的handler了。
 
@@ -191,13 +192,13 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 当我们点击一个按钮是，`click`事件将会最终冒泡至document，并触发我们监听在document上的handler `dispatchEvent`，接着触发`batchedUpdates`。`batchedUpdates`这个格式的代码在React的源码里面会频繁的出现，基本上React将所有能够**批量处理**的事情都会先收集起来，再一次性处理。
 
-可以看到默认的`isBatching`是false的，当调用了一次`batchedUpdates`，`isBatching`的值将会变成true，此时如果在接下来的调用中有继续调用`batchedUpdates`的话，就会直接执行`handleTopLevel`,此时的`setState`等不会被更新到DOM上。直到调用栈重新回到第一次调用`batchedUpdates`的时候，才会将所有结果一起flush掉（更新到DOM上）。
+可以看到默认的`isBatching`是false的，当调用了一次`batchedUpdates`，`isBatching`的值将会变成true，此时如果在接下来的调用中有执行`batchedUpdates`的话，就会直接执行`handleTopLevel`,此时的`setState`等不会被更新到DOM上。直到调用栈重新回到第一次调用`batchedUpdates`的时候，才会将所有结果一起flush掉（更新到DOM上）。
 
 ![](https://qncdnssl.lzane.com/2018-11-04-15413175673832.jpg)
 
 有的同学可能问调用栈中的`BatchedUpdates$1`是什么？或者浏览器的renderer和Native的renderer是如果挂在到React的事件系统上的?
 
-其实React事件系统里面提供了一个函数`setBatchingImplementation`，用来动态挂载不同平台的renderer，这个也体现了React事件系统的`复用`。
+其实React事件系统里面提供了一个函数`setBatchingImplementation`，用来动态挂载不同平台的renderer，这个也体现了React事件系统的`复用`。（如图右边所示，在DOM Renderer里面和Native Renderer里面分别调用这个函数动态注入相应的实现）
 
 这里的`interactiveUpdates`和`batchedUpdates`的区别在上文已经解释过，这里就不再赘述。
 
