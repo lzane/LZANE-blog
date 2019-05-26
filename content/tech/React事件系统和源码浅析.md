@@ -1,5 +1,5 @@
 ---
-title: "React事件系统和源码浅析"
+title: "动画浅析React事件系统和源码"
 date: 2018-11-03T20:00:00+08:00
 draft: false
 slug: react event system and source code
