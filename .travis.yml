@@ -1,3 +1,6 @@
+language: minimal
+python: 3.6
+
 install:
   - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb
   - sudo dpkg -i /tmp/hugo.deb
@@ -7,7 +10,8 @@ script:
 
 before_deploy:
   - cp -r supplement/public/ public
-  - pip install qiniu
+  - pip install --user -U pip
+  - pip install qiniu --user
 
 deploy:
   - provider: script
