@@ -17,8 +17,8 @@ script:
 
 before_deploy:
   - cp -r supplement/public/ public
-  - pip install --user -U pip
-  - pip install --user qiniu 
+  - pip install -U pip
+  - pip install qiniu 
 
 deploy:
   - provider: script
