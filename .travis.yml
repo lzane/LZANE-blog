@@ -7,7 +7,8 @@ script:
 
 before_deploy:
   - cp -r supplement/public/ public
-  
+  - pip install qiniu
+
 deploy:
   - provider: script
     script: python deploy.py
