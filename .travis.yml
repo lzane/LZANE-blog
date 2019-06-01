@@ -1,9 +1,12 @@
 dist: "trusty"
-addons:
-  apt:
-    packages:
-      - "python3"
-      - "python3-pip"
+# addons:
+#   apt:
+#     packages:
+#       - "python3"
+#       - "python3-pip"
+
+python: 
+  - 3.6
 
 install:
   - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb
