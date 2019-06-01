@@ -11,8 +11,8 @@ script:
 
 before_deploy:
   - cp -r supplement/public/ public
-  - pip3 install --user -U pip
-  - pip3 install --user qiniu 
+  - pip install --user -U pip
+  - pip install --user qiniu 
 
 deploy:
   - provider: script
