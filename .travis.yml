@@ -1,6 +1,9 @@
-dist: trusty
-language: minimal
-python: "3.6"
+dist: "trusty"
+addons:
+  apt:
+    packages:
+      - "python3"
+      - "python3-pip"
 
 install:
   - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb
@@ -11,12 +14,12 @@ script:
 
 before_deploy:
   - cp -r supplement/public/ public
-  - pip install --user -U pip
-  - pip install --user qiniu 
+  - pip3 install --user -U pip
+  - pip3 install --user qiniu 
 
 deploy:
   - provider: script
-    script: python deploy.py
+    script: python3 deploy.py
     skip_cleanup: true
     on:
       branch: master
