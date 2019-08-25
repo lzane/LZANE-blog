@@ -9,6 +9,8 @@ tags:
 url: fingers-detection-using-opencv-and-python
 ---
 
+[![](https://img.shields.io/github/stars/lzane/Fingers-Detection-using-OpenCV-and-Python.svg?color=brightgree)](https://github.com/lzane/Fingers-Detection-using-OpenCV-and-Python) [![](https://img.shields.io/github/issues/lzane/Fingers-Detection-using-OpenCV-and-Python.svg)](https://github.com/lzane/Fingers-Detection-using-OpenCV-and-Python/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/Fingers-Detection-using-OpenCV-and-Python.svg)
+
 ## Environment
 - OS: MacOS El Capitan
 - Platform: Python 2.7.12

@@ -8,6 +8,8 @@ tags:
 url: mo-ni-tui-huo-vehicle-routing-problem-vrp-using-simulated-annealing-sa-with-matlab
 ---
 
+[![](https://img.shields.io/github/stars/lzane/VRP-using-SA-with-Matlab.svg?color=brightgree)](https://github.com/lzane/VRP-using-SA-with-Matlab) [![](https://img.shields.io/github/issues/lzane/VRP-using-SA-with-Matlab.svg)](https://github.com/lzane/VRP-using-SA-with-Matlab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/VRP-using-SA-with-Matlab.svg)
+
 使用Matlab用模拟退火（SA）解决VRP问题。首先什么是VRP问题？
 
 大家应该都知道旅行商问题（TSP，Traveling Salesman Problem），即求一个旅行家从一个仓库出发，通过沿途所有城市，再回到仓库所需要的最短路径。TSP问题中只有一个旅行商，那我们如何去解决有多个旅行商(车辆)同时送货的问题呢？
