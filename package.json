@@ -1,0 +1,20 @@
+{
+  "name": "lzane-blog",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.com/lzane/LZANE-blog.svg?branch=master)](https://travis-ci.com/lzane/LZANE-blog)",
+  "main": " ",
+  "scripts": {
+    "start": "hugo -t cocoa --watch -D serve",
+    "build": "hugo -t cocoa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lzane/LZANE-blog.git"
+  },
+  "author": "lzane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lzane/LZANE-blog/issues"
+  },
+  "homepage": "https://github.com/lzane/LZANE-blog#readme"
+}
