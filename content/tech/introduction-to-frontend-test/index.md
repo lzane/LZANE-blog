@@ -76,9 +76,29 @@ slug: introduction-to-frontend-test
 
 ### 更多测试的作用
 
+当然前端测试还能带给你更多好处，这里限于文章篇幅简单带过。
+
+- 指导写出低耦合，易于维护的好代码，因为好的代码往往都容易被测试。通过控制反转、依赖注入、减少副作用、将副作用分解在函数两端等等来使你的代码跟容易被测试。
+- 对开发而言，测试即文档。看一个组件的测试用例就可以知道如何使用，在阅读框架或库源码的时候，如果因为内容太多无从下手的时候，也可以去看它的测试，通过分析一个最简单例子的函数调用栈来学习源码。
+- 对需求的理解，明确正在写的功能。有时候进场写着写着代码，看到这里可以优化，就改这里一点，看到那边可以删减，就删减那边一点，上下文频繁切换，不明确正在写的需求，导致效率较低并且commit记录混乱。而如果严格按照TDD规范，你就可以很轻松的知道你写的每一行代码是为了什么，要满足怎样的语气。
+- ...
+
 ## 前端测试的实践
 
 ## 前端测试经常问到的问题
+
+### 写测试浪费时间
+每一次谈到测试都绕不过的一个问题，“写测试会不会很浪费时间？ 需求已经这么赶了，写测试太慢了吧？要写两倍的代码？”。其实想要知道这个问题的答案非常简单，你只需要自己去尝试一下便知。
+
+我自己的感受而言，使用TDD的方式开发并不会多花费太多时间的。甚至你如果把原本后置的debug修bug，跟别人解释代码的时间、以及返工，上下文切换的开销算进去，甚至是会节省时间的。并且你的心态是完全不一样的，我们都喜欢写代码胜过修bug，喜欢一气呵成多于反复返工。并且测试带给了我这么多好处，并不应该只从时间开销这一个方面来看这件事，甚至说只要不会多费太多时间，也应当是可以接受的。
+
+如果一定要我量化这个指标，这里引用微软的一份报告，大概意思是说使用TDD的团队，在开发阶段需要多花15-30%的时间，以获得在上线前减少40-90%的Bug的收益。
+
+> The results of the case studies indicated that the pre-release defect density of the four products decreased between 40% and 90% relative to similar projects that did not use the TDD practice. Subjectively, the teams experienced a 15–35% increase in initial development time after adopting TDD. -- [微软的一份报告](https://www.microsoft.com/en-us/research/wp-content/uploads/2009/10/Realizing-Quality-Improvement-Through-Test-Driven-Development-Results-and-Experiences-of-Four-Industrial-Teams-nagappan_tdd.pdf)
+
+### 哪些代码需要测试？颗粒度？
+
+### 测试覆盖率？coverage
 
 ## 参考
 - 【书籍】Refactoring: Improving the Design of Existing Code (2nd Edition) by Martin Fowler
