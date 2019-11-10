@@ -13,10 +13,9 @@ install:
   - sudo dpkg -i /tmp/hugo.deb
 
 script:
-  - hugo -t cocoa --baseURL="https://www.lzane.com" 
+  - ./build.sh 
 
 before_deploy:
-  - cp -r supplement/public/ public
   - pip install -U pip
   - pip install qiniu 
 

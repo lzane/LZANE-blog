@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="../reveal.js/css/reset.css"/>
+    <link
+            href="../reveal.js/css/tailwind.min.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+    <link rel="stylesheet" href="../reveal.js/css/theme/zane.css"/>
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/github.css"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = window.location.search.match(/print-pdf/gi)
+            ? "../reveal.js/css/print/pdf.css"
+            : "../reveal.js/css/print/paper.css";
+        document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1><b>这才是真正的Git</b></h1>
+            <h2>Git原理及实用技巧</h2>
+            <p>@LZANE</p>
+        </section>
+
+        <section class="h-full">
+            <div class="flex h-full mx-8">
+                <div class="flex justify-center flex-col w-2/6 h-full ">
+                    <img
+                            class="rounded-full mx-auto border-4 shadow-xl"
+                            src='./materials/avatar.jpeg'
+                    />
+                </div>
+                <div class="flex justify-center flex-col w-4/6 h-full text-left pl-24">
+                    <p>李泽帆 | @LZANE</p>
+                    <p>毕业于中山大学</p>
+                    <p>目前就职于腾讯CDC</p>
+                    <p>专注于Web开发和数据科学</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <section><h2>Git是怎么储存信息的</h2></section>
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ mkdir test_git && cd test_git
+                    $ git init
+                    $ echo '111' > a.txt
+                    $ echo '222' > b.txt
+                    $ git add *.txt
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ tree .git/objects
+                    .git/objects
+                    ├── 58
+                    │   └── c9bdf9d017fcd178dc8c073cbfcbb7ff240d6c
+                    ├── c2
+                    │   └── 00906efd24ec5e783bee7f23b5d7c941b0c12c
+                    ├── info
+                    └── pack
+
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ cat .git/objects/58/c9bdf9d017fcd178dc8c073cbfcbb7ff240d6c
+                    xKOR0a044K%
+                </code></pre>
+            </section>
+
+            <section>
+                <b class="text-7xl">git cat-file [-t] [-p]</b>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ git cat-file -t 58c9
+                    blob
+                    $ git cat-file -p 58c9
+                    111
+                </code></pre>
+            </section>
+
+            <section>
+                <div><b class="text-7xl">Git Object</b></div>
+                <div class="mt-4">
+                    <img src='./materials/blob.png' class="border-0 inline-block"/>
+                    <span class="ml-4">blob</span>
+                </div>
+            </section>
+
+            <section>
+                <b class="text-7xl">SHA1</b>
+                <img src='./materials/sha1.png' class="mt-4 border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+            <section>
+                <b class="text-7xl">键值对</b>
+            </section>
+
+            <section>
+                <img src='./materials/p1s1.png' class="h-24 border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ git commit -am '[+] init'
+                    $ tree .git/objects
+                    .git/objects
+                    ├── 0c
+                    │   └── 96bfc59d0f02317d002ebbf8318f46c7e47ab2
+                    ├── 4c
+                    │   └── aaa1a9ae0b274fba9e3675f9ef071616e5b209
+                    ...
+                </code></pre>
+            </section>
+
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                    $ git cat-file -t 4caaa1
+                    tree
+                    $ git cat-file -p 4caaa1
+                    100644 blob 58c9bdf9d017fcd178dc8c0...	a.txt
+                    100644 blob c200906efd24ec5e783bee7...	b.txt
+                </code></pre>
+            </section>
+
+            <section>
+                <img src='./materials/p1s2.png' class="border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                $ git cat-file -t 0c96bf
+                commit
+                $ git cat-file -p 0c96bf
+                tree 4caaa1a9ae0b274fba9e3675f9ef071616e5b209
+                author lzane 李泽帆 <cn.zanelee@gmail.com> 1573302343 +0800
+                committer lzane 李泽帆 <cn.zanelee@gmail.com> 1573302343 +0800
+                [+] init
+                </code></pre>
+            </section>
+
+            <section>
+                <img src='./materials/p1s3.png' class="border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
+                $ cat .git/HEAD
+                ref: refs/heads/master
+
+                $ cat .git/refs/heads/master
+                0c96bfc59d0f02317d002ebbf8318f46c7e47ab2
+
+
+                </code></pre>
+            </section>
+
+            <section>
+                <img src='./materials/p1s4.png' class="border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+            <section>
+                <img src='./materials/legend.png' class="border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Git的三个分区</h2>
+            </section>
+            <section class="h-full">
+                <img src='./materials/3area.png' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+            <section class="h-full">
+                <img src='./materials/p2s1.gif' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+            <section class="h-full">
+                <img src='./materials/p2s2.gif' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+            <section class="h-full">
+                <img src='./materials/p2s3.gif' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
+            </section>
+            <section>
+                <div><b class="text-5xl">问题：每次commit，git储存的是所有文件的快照还是储存文件的变更记录？</b></div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Git这样实现有什么好处</h2>
+            </section>
+
+            <section>
+                <div><b class="text-5xl">Git其实是一个简化的区块链，两者的数据结构都基于默克尔树。</b></div>
+            </section>
+
+            <section>
+                <div><b class="text-5xl">分布式</b></div>
+                <div><b class="text-5xl">可追溯</b></div>
+                <div><b class="text-5xl">不可篡改</b></div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Git实用技巧</h2>
+            </section>
+            <section>123</section>
+        </section>
+
+
+        <section>end</section>
+    </div>
+</div>
+
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: "../reveal.js/plugin/markdown/marked.js"},
+            {src: "../reveal.js/plugin/markdown/markdown.js"},
+            {src: "../reveal.js/plugin/notes/notes.js", async: true},
+            {src: "../reveal.js/plugin/highlight/highlight.js", async: true}
+        ],
+        hash: true
+    });
+</script>
+</body>
+</html>
