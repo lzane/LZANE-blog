@@ -5,3 +5,4 @@
 /content/tech/media
 /deploy_tencent.py
 /.qiniu_pythonsdk_hostscache.json
+/slide/.idea
