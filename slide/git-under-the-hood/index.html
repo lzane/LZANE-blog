@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="../reveal.js/css/reset.css" />
+        <link
+            href="../reveal.js/css/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../reveal.js/css/reveal.css" />
+        <link rel="stylesheet" href="../reveal.js/css/theme/zane.css" />
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/github.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = window.location.search.match(/print-pdf/gi)
+                ? "../reveal.js/css/print/pdf.css"
+                : "../reveal.js/css/print/paper.css";
+            document.getElementsByTagName("head")[0].appendChild(link);
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1><b>这才是真正的Git</b></h1>
+                    <h2>Git原理及实用技巧</h2>
+                    <p>@LZANE</p>
+                </section>
+               
+                <section class="h-full">
+                    <div class="flex h-full mx-8">
+                        <div class="flex justify-center flex-col w-2/6 h-full ">
+                            <img 
+                                class="rounded-full mx-auto border-4 shadow-xl" 
+                                src='./materials/avatar.jpeg'
+                            />
+						</div>
+                        <div class="flex justify-center flex-col w-4/6 h-full text-left pl-24">
+                            <p>李泽帆 | @LZANE</p>
+                            <p>毕业于中山大学</p>
+                            <p>目前就职于腾讯CDC</p>
+                            <p>专注于Web开发和数据科学</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <section><h2>Git是怎么储存信息的</h2></section>
+                    <section>
+                        <pre><code class="shell">
+$ echo $EDITOR
+vim
+$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+$ git push
+Everything up-to-date
+$ echo 'All
+> done!'
+All
+done!
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section><h2>Git原理</h2></section>
+                    <section>123</section>
+                </section>
+
+                <section>
+                    <section><h2>Git实用技巧</h2></section>
+                    <section>123</section>
+                </section>
+
+
+                <section>end</section>
+            </div>
+        </div>
+
+        <script src="../reveal.js/js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: "../reveal.js/plugin/markdown/marked.js" },
+                    { src: "../reveal.js/plugin/markdown/markdown.js" },
+                    { src: "../reveal.js/plugin/notes/notes.js", async: true },
+                    { src: "../reveal.js/plugin/highlight/highlight.js", async: true }
+                ],
+                hash: true
+            });
+        </script>
+    </body>
+</html>
