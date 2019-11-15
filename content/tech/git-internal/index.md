@@ -151,7 +151,7 @@ $ cat .git/refs/heads/master
 
 - 工作目录 （ working directory ）：操作系统上的文件，所有代码开发编辑都在这上面完成。
 - 索引（ index or staging area ）：可以理解为一个暂存区域，这里面的代码会在下一次commit被提交到Git仓库。
-- Git仓库（ git repository ）：由Git object记录着每一次提交的快照，以及链式结构记录的提交的变更历史版本。
+- Git仓库（ git repository ）：由Git object记录着每一次提交的快照，以及链式结构记录的提交变更历史。
 
 我们来看一下更新一个文件的内容这个过程会发生什么事。
 

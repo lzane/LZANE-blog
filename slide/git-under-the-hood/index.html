@@ -37,31 +37,38 @@
         <section>
             <h1><b>这才是真正的Git</b></h1>
             <h2>Git原理及实用技巧</h2>
-            <p>@LZANE</p>
+            <div class="text-2xl">
+                <img
+                        class="rounded-full border-2 shadow-md h-16 mx-auto mt-16 mb-6"
+                        src='./materials/avatar.jpeg'
+                />
+                <span class="">
+                        李泽帆（靓仔）
+                        <span class="mx-2">·</span>
+                        腾讯CDC
+                        <span class="mx-2">·</span>
+                        Web开发和数据科学
+                        <span class="mx-2">·</span>
+                        @LZANE
+
+                    </span>
+            </div>
         </section>
 
-        <section class="h-full">
-            <div class="flex h-full mx-8">
-                <div class="flex justify-center flex-col w-2/6 h-full ">
-                    <img
-                            class="rounded-full mx-auto border-4 shadow-xl"
-                            src='./materials/avatar.jpeg'
-                    />
-                </div>
-                <div class="flex justify-center flex-col w-4/6 h-full text-left pl-24">
-                    <p>李泽帆 | @LZANE</p>
-                    <p>毕业于中山大学</p>
-                    <p>目前就职于腾讯CDC</p>
-                    <p>专注于Web开发和数据科学</p>
-                </div>
-            </div>
+        <section>
+            <section>
+                <h2><b>小调查</b></h2>
+                <p class="fragment fade-in-then-semi-out">了解Git object，如blob、tree、commit等？</p>
+                <p class="fragment fade-in-then-semi-out">了解Git的三个分区，如工作区域、暂存区、Git仓库？</p>
+                <p class="fragment fade-in-then-semi-out">清楚知道git reset --soft、git reset、git reset --hard的区别</p>
+                <p class="fragment fade-in-then-semi-out">知道在误删一个分支之后怎么补救（reflog）？</p>
+            </section>
         </section>
 
         <section>
             <section><h2>Git是怎么储存信息的</h2></section>
             <section>
                 <pre><code data-trim data-noescape class="shell text-3xl leading-normal">
-                    $ mkdir test_git && cd test_git
                     $ git init
                     $ echo '111' > a.txt
                     $ echo '222' > b.txt
@@ -105,8 +112,11 @@
 
             <section>
                 <div><b class="text-7xl">Git Object</b></div>
-                <div class="mt-4">
-                    <img src='./materials/blob.png' class="border-0 inline-block"/>
+                <div class="mt-4 ">
+                    <div class="relative inline-block">
+                        <img src='./materials/blob.png' class="border-0 inline-block"/>
+                        <span class="absolute fragment" style="left:10px;bottom: 10px">111</span>
+                    </div>
                     <span class="ml-4">blob</span>
                 </div>
             </section>
@@ -118,9 +128,6 @@
 
             <section>
                 <b class="text-7xl">键值对</b>
-            </section>
-
-            <section>
                 <img src='./materials/p1s1.png' class="h-24 border-0 mx-auto bg-transparent shadow-none"/>
             </section>
 
@@ -170,7 +177,7 @@
             </section>
 
             <section>
-                <div><b class="text-5xl">那分支和tag在哪里？</b></div>
+                <div class="text-5xl font-bold">那分支和tag在哪里？</div>
             </section>
 
             <section>
@@ -180,19 +187,25 @@
 
                 $ cat .git/refs/heads/master
                 0c96bfc59d0f02317d002ebbf8318f46c7e47ab2
-
-
                 </code></pre>
+            </section>
+
+            <section>
+                <div class="text-5xl"><b>HEAD、分支、普通的Tag可以简单的理解成是一个指针，指向对应commit的SHA1值。</b></div>
             </section>
 
             <section>
                 <img src='./materials/p1s4.png' class="border-0 mx-auto bg-transparent shadow-none"/>
             </section>
 
+
             <section>
                 <img src='./materials/legend.png' class="border-0 mx-auto bg-transparent shadow-none"/>
             </section>
 
+            <section>
+                <div class="text-5xl font-bold"> Q1: 为什么要把文件的权限和文件名储存在tree object里面而不是glob object呢？</div>
+            </section>
 
         </section>
 
@@ -203,6 +216,14 @@
             <section class="h-full">
                 <img src='./materials/3area.png' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
             </section>
+
+            <section>
+                <ul>
+                    <li>工作目录 （ working directory ）：操作系统上的文件，所有代码开发编辑都在这上面完成。</li>
+                    <li>索引（ index or staging area ）：一个暂存区域，会在下一次commit被提交到Git仓库。</li>
+                    <li>Git仓库（ git repository ）：由Git object记录着每一次提交的快照，以及链式结构记录的提交变更历史。</li>
+                </ul>
+            </section>
             <section class="h-full">
                 <img src='./materials/p2s1.gif' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
             </section>
@@ -212,24 +233,24 @@
             <section class="h-full">
                 <img src='./materials/p2s3.gif' class="h-full border-0 mx-auto bg-transparent shadow-none"/>
             </section>
-            <section>
-                <div><b class="text-5xl">问题：每次commit，git储存的是所有文件的快照还是储存文件的变更记录？</b></div>
-            </section>
-        </section>
 
-        <section>
             <section>
-                <h2>Git这样实现有什么好处</h2>
+                <div class="text-5xl"><b>Git的大部分指令就是在操作这三个分区以及这条链。</b></div>
             </section>
 
             <section>
-                <div class="text-5xl">Git和<b>区块链</b>的数据结构非常相似，两者都基于<B>哈希树（默克尔树）</B>。</div>
+                <div class="text-5xl"><b>思考一下git的各种命令，尝试在上图将它们“可视化”出来</b></div>
             </section>
 
             <section>
-                <div><b class="text-5xl">分布式</b></div>
-                <div><b class="text-5xl">可追溯</b></div>
-                <div><b class="text-5xl">不可篡改</b></div>
+                <div class="text-5xl font-bold">Q2：每次commit，Git储存的是全新的文件快照还是储存文件的变更部分？</div>
+            </section>
+
+            <section>
+                <div class="text-5xl font-bold">
+                    Q3：Git怎么保证历史记录不可篡改？
+                    <div class="text-4xl mt-8">Git和<b>区块链</b>的数据结构非常相似，两者都基于<B>哈希树和分布式系统</B>。</div>
+                </div>
             </section>
         </section>
 
@@ -256,7 +277,8 @@
             {src: "../reveal.js/plugin/markdown/marked.js"},
             {src: "../reveal.js/plugin/markdown/markdown.js"},
             {src: "../reveal.js/plugin/notes/notes.js", async: true},
-            {src: "../reveal.js/plugin/highlight/highlight.js", async: true}
+            {src: "../reveal.js/plugin/highlight/highlight.js", async: true},
+            {src: '../reveal.js/plugin/zoom-js/zoom.js', async: true},
         ],
         hash: true
     });
