@@ -62,6 +62,7 @@
                 <p class="fragment fade-in-then-semi-out">了解Git的三个分区，如工作区域、暂存区、Git仓库？</p>
                 <p class="fragment fade-in-then-semi-out">清楚知道git reset --soft、git reset、git reset --hard的区别</p>
                 <p class="fragment fade-in-then-semi-out">知道在误删一个分支之后怎么补救（reflog）？</p>
+                <p class="fragment fade-in-then-semi-out">PPT or DEMO?</p>
             </section>
         </section>
 
@@ -242,14 +243,20 @@
                 <div class="text-5xl"><b>思考一下git的各种命令，尝试在上图将它们“可视化”出来</b></div>
             </section>
 
+            <section data-background-iframe="https://marklodato.github.io/visual-git-guide/index-zh-cn.html"
+                     data-background-interactive>
+
+            </section>
+
             <section>
                 <div class="text-5xl font-bold">Q2：每次commit，Git储存的是全新的文件快照还是储存文件的变更部分？</div>
+                <div class="text-4xl font-bold mt-8 fragment">全新的文件快照</div>
             </section>
 
             <section>
                 <div class="text-5xl font-bold">
                     Q3：Git怎么保证历史记录不可篡改？
-                    <div class="text-4xl mt-8">Git和<b>区块链</b>的数据结构非常相似，两者都基于<B>哈希树和分布式系统</B>。</div>
+                    <div class="text-4xl mt-8 fragment">Git和<b>区块链</b>的数据结构非常相似，两者都基于<B>哈希树和分布式</B>。</div>
                 </div>
             </section>
         </section>
@@ -258,7 +265,65 @@
             <section>
                 <h2>Git实用技巧</h2>
             </section>
-            <section>123</section>
+
+            <section>
+                <div class="text-5xl font-bold mb-12">误操作导致分支不见了，如何恢复？</div>
+                <div>不小心删了分支</div>
+                <div>git reset --hard</div>
+                <div>...</div>
+            </section>
+
+            <section>
+                <b class="text-5xl">git reflog 时光机</b>
+                <pre><code data-trim data-noescape class="shell text-2xl leading-normal">
+                     $ git reflog
+                     e171c5f (HEAD -> article/git, origin/article/git) HEAD@{0}: commit: [+] writing
+                     7788bcd HEAD@{1}: commit: [+] writing
+                     adbb712 HEAD@{2}: commit: [*] 修改构建脚本
+                     7341618 HEAD@{3}: commit: [+] writing
+                     925c148 HEAD@{4}: pull: Fast-forward
+                     6952e07 HEAD@{5}: commit: [+] writing
+                     c92a024 HEAD@{6}: commit: [+] 添加文章内容
+                     cfb234e (origin/master, origin/HEAD, master) HEAD@{7}: reset: moving to HEAD~2
+                </code></pre>
+            </section>
+
+            <section>
+                <div class="text-5xl font-bold mb-12">如何获得一个干净的工作空间？</div>
+                <div>现在的工作空间太乱了</div>
+                <div>工作到一半，临时插需求</div>
+                <div>...</div>
+            </section>
+
+            <section>
+                <div class="text-5xl mb-4">git reset --hard HEAD 或 git checkout -f</div>
+                <div class="text-5xl mb-8 fragment">git clean -df</div>
+                <b class="text-6xl fragment">git stash push [-u | --include-untracked]</b>
+            </section>
+
+            <section>
+                <div class="text-5xl font-bold mb-12">从Git历史中删除一个文件</div>
+                <div class="mb-4">敏感信息（私钥，内网ip等）</div>
+                <div>不需要版本控制的超大文件</div>
+                <div>...</div>
+            </section>
+
+            <section>
+                <b class="text-6xl">$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD</b>
+            </section>
+
+            <section>
+                <b class="text-6xl">每一个revert，马上立刻新建一个revert的revert放在PR里面！</b>
+            </section>
+
+            <section>
+                <div><b class="text-6xl fragment fade-in-then-semi-out">$ git commit --amend</b></div>
+                <div><b class="text-6xl fragment fade-in-then-semi-out">$ git rebase -i origin/master</b></div>
+                <div><b class="text-6xl fragment fade-in-then-semi-out">$ git show-branch</b></div>
+                <div><b class="text-6xl fragment fade-in-then-semi-out">$ git blame</b></div>
+                <div><b class="text-6xl fragment fade-in-then-semi-out">$ git bisect</b></div>
+            </section>
+
         </section>
 
 
