@@ -1,7 +1,7 @@
 ---
 title: "这才是真正的Git——Git内部原理"
 date: 2019-11-11T8:00:00+08:00
-draft: false
+draft: True
 tags:
 - Tech
 - Git
