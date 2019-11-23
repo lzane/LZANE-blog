@@ -1,3 +1,3 @@
-hugo -t cocoa --baseURL="https://www.lzane.com"
+hugo -t cocoa --baseURL="/"
 cp -r ./supplement/public/ public
 cp -r ./slide public

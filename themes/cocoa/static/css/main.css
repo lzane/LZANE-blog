@@ -706,7 +706,8 @@ section.main .content .markdown blockquote p:last-child {
   }
 }
 section.main .content .markdown img {
-  margin: 1rem 0;
+  margin: 1rem auto;
+  display: block;
   max-width: 100%;
 }
 section.main .content .markdown table {

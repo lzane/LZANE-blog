@@ -32,14 +32,19 @@ url                    = "life/"
 
 [[menu.main]]
 name                   = "Project"
-weight                 = -105
+weight                 = -100
 identifier             = "project"
 url                    = "project/"
 
+[[menu.main]]
+name                   = "Talk"
+weight                 = -90
+identifier             = "talk"
+url                    = "talk/"
 
 [[menu.main]]
 name                   = "About"
-weight                 = -100
+weight                 = -80
 identifier             = "about"
 url                    = "about/"
 
