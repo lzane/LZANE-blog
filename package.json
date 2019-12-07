@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/lzane/LZANE-blog/issues"
   },
-  "homepage": "https://github.com/lzane/LZANE-blog#readme"
+  "homepage": "https://github.com/lzane/LZANE-blog#readme",
+  "dependencies": {}
 }
