@@ -52,9 +52,10 @@ url                    = "about/"
 
 
 [params]
-mainSections = ["tech"]
+mainSections = ["tech","life"]
+seeMoreSections = ["tech"]
 include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
-latestpostscount       = 5                             # how many posts to display on the home page
+latestpostscount       = 10                            # how many posts to display on the home page
 i18n_flags             = false                         # whether to display small country flags for available translations
 author                 = "LZANE | 李泽帆（靓仔）"
 cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
