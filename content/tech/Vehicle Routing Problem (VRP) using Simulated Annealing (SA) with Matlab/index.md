@@ -50,7 +50,7 @@ url: mo-ni-tui-huo-vehicle-routing-problem-vrp-using-simulated-annealing-sa-with
 
 首先看这张图，如果采用一般的贪心算法求最大值，那么当搜索到达A之后，就不会继续向前了，这就陷入了局部最优解。
 
-![](http://pic002.cnblogs.com/images/2010/63234/2010122016525713.png#small)
+![](./2010122016525713.png)
 
 SA模拟退火算法就是解决这个问题的一个办法，模仿金属冶炼时的退火过程，以一定概率接受一个更差一点的解，从而跳出局部最优解。
 
@@ -61,7 +61,7 @@ SA模拟退火算法就是解决这个问题的一个办法，模仿金属冶炼
 - 假如生成的解比原来的差，则计算 **P(dE)=exp(dE/(kT))**, 以一定的概率接受这个较差解，然后降温。
 - 生成一个neighbor,重复整个过程。
 
-生成neignbor的方法也多种多样，比如说：
+生成neighbor的方法也多种多样，比如说：
 
 - swap
 - insert
