@@ -46,8 +46,9 @@
                   repo: "{{ .Site.Params.gitalk_repo }}",
                   owner: "{{ .Site.Params.gitalk_owner }}",
                   admin: {{ .Site.Params.gitalk_admin }},
+                  id: md5(location.pathname),
                   // facebook-like distraction free mode
-                  distractionFreeMode: true
+                  distractionFreeMode: true,
                 })
                 gitalk.render('gitalk-container')
             </script>
