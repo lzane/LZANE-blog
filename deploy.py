@@ -44,7 +44,7 @@ def myUploadFile(filePath, key):
     print(response['ETag'])
 
 
-g = os.walk(r"./public")
+g = os.walk(r".")
 
 for path, dir_list, file_list in g:
     if ".git" in path:
