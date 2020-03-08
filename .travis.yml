@@ -13,15 +13,10 @@ install:
   - sudo dpkg -i /tmp/hugo.deb
 
 script:
-  - ./build.sh 
-
-before_deploy:
-  - pip install -U pip
-  - pip install qiniu 
+  - echo "skipping tests"
 
 deploy:
-  - provider: script
-    script: python deploy.py
-    skip_cleanup: true
-    on:
-      branch: master
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
