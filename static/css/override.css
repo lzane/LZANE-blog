@@ -51,6 +51,10 @@ img[src$="#small"] {
     margin-right: auto;
 }
 
+img[src$='#inline'] {
+    display: inline !important;
+}
+
 section.main .content .page-heading {
     font-size: 1.6rem;
 }
