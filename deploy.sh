@@ -1,13 +1,4 @@
-
-if [ -d "for_deploy" ]; then
-    rm -rf for_deploy
-fi
-
-mkdir for_deploy
-cd for_deploy
-git clone https://github.com/lzane/blog
-cd blog
+pip3 install -U cos-python-sdk-v5
+pip3 install requests
 ./build.sh
 python3 ./deploy.py
-cd ../..
-rm -rf for_deploy
