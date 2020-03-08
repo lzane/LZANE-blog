@@ -8,7 +8,7 @@ tags:
 url: mo-ni-tui-huo-vehicle-routing-problem-vrp-using-simulated-annealing-sa-with-matlab
 ---
 
-[![](https://img.shields.io/github/stars/lzane/VRP-using-SA-with-Matlab.svg?color=brightgree)](https://github.com/lzane/VRP-using-SA-with-Matlab) [![](https://img.shields.io/github/issues/lzane/VRP-using-SA-with-Matlab.svg)](https://github.com/lzane/VRP-using-SA-with-Matlab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/VRP-using-SA-with-Matlab.svg)
+[![](https://img.shields.io/github/stars/lzane/VRP-using-SA-with-Matlab.svg?color=brightgree#inline)](https://github.com/lzane/VRP-using-SA-with-Matlab) [![](https://img.shields.io/github/issues/lzane/VRP-using-SA-with-Matlab.svg?#inline)](https://github.com/lzane/VRP-using-SA-with-Matlab/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/VRP-using-SA-with-Matlab.svg?#inline)
 
 使用Matlab用模拟退火（SA）解决VRP问题。首先什么是VRP问题？
 

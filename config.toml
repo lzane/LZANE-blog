@@ -8,7 +8,7 @@ theme               = "cocoa"
 author              = "lzane"
 title               = "LZANE | 李泽帆（靓仔）"
 pygmentsuseclasses  = true
-disqusshortname     = "lzane" # Comment out to disable Disqus.
+# disqusshortname     = "lzane" # Comment out to disable Disqus.
 pluralizelisttitles = false
 googleAnalytics     = "UA-76031655-1"
 hasCJKLanguage      = true
@@ -74,7 +74,7 @@ noshowreadtime         = true                         # if true, don't show "<x>
 selfintro              = "软件工程师，专注于Web开发和数据科学 | Be all you can be"                            # appears in the site header when set to a non-empty string
 # twitter                = "//twitter.com/lzanelee"
 # mastodon               = "//example.com/@you"
-telegram               = "//t.me/lzane"
+# telegram               = "//t.me/lzane"
 
 highlightjs            = true
 # highlightjslanguages = ["go"]                        # additional languages not included in the "common" set
@@ -84,13 +84,13 @@ piwik                  = false                         # If true, Piwik integrat
 # piwik_url            = "//www.example.com/piwik/"    # URL to your Piwik installation. Must End with a slash
 # piwik_id             = 2                             # Id of your site in Piwik
 
-gitalk                 = false
+gitalk                 = true
 # if gitalk is true, the following params should be set. These parameters could be retrieved from github OAuth
-gitalk_clientID        = "your client id"
-gitalk_clientSecret    = "your client secret"
-gitalk_repo            = "your repo url"
-gitalk_owner           = "the owner of this repo"
-gitalk_admin           = ['a', 'list', 'of', 'administrator']
+gitalk_clientID        = "1f13eff987e879cdbd21"
+gitalk_clientSecret    = "112448124e6bb13862381a535149aae94818fd23"
+gitalk_repo            = "LZANE-blog"
+gitalk_owner           = "lzane"
+gitalk_admin           = ['lzane']
 
 avatar                 = "img/profile.jpeg" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
 # gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar

@@ -5,6 +5,7 @@ tags:
 - Tech
 - Git
 slug: git-internal
+best: True
 ---
 
 ![](./git-update-file.gif)

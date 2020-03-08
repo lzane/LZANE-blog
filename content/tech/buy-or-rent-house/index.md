@@ -8,8 +8,7 @@ tags:
 - Weapp
 slug: buy-or-rent-house-weapp
 ---
-
-[![](https://img.shields.io/github/stars/lzane/buy-or-rent-house.svg?color=brightgree)](https://github.com/lzane/buy-or-rent-house) [![](https://img.shields.io/github/issues/lzane/buy-or-rent-house.svg)](https://github.com/lzane/buy-or-rent-house/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/buy-or-rent-house.svg)
+[![](https://img.shields.io/github/stars/lzane/buy-or-rent-house.svg?color=brightgree#inline)](https://github.com/lzane/buy-or-rent-house) [![](https://img.shields.io/github/issues/lzane/buy-or-rent-house.svg?#inline)](https://github.com/lzane/buy-or-rent-house/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) ![](https://img.shields.io/github/license/lzane/buy-or-rent-house.svg?#inline)
 
 ## TL;DR
 买房还是租房？这个问题对于不同的人、地点、未来预期、房市走向、房租涨幅等，都会得到不一样的答案。希望能够通过计算未来所有时间点这两种选择对应的净资产，绘制成图表供对比，为买房或租房的人提供一些能够量化的计算结果。已将此功能做成小程序。

@@ -7,17 +7,26 @@
                     {{ .Content }}
                 </div>
             {{ end }}
-            {{ $totalpostscount := len (where .Data.Pages "Section" "in" .Site.Params.mainSections) }}
+            {{ $totalpostscount := len (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
             {{ $latestpostscount := .Site.Params.latestpostscount | default $totalpostscount }}
             {{ if gt $latestpostscount 0 }}
                 <div class="page-heading">{{ i18n "latestPosts" }}</div>
                 <ul>
-                    {{ range (first $latestpostscount (where .Data.Pages "Section" "in" .Site.Params.mainSections)) }}
-                        {{ partial "li.html" . }}
+                    <!--best posts-->
+                    {{ range sort .Site.RegularPages "Date" "desc" }}
+                        {{ if eq .Params.best true }}
+                            {{ partial "li.html" . }}
+                        {{ end }}
+                    {{ end }}
+
+                    {{ range (first $latestpostscount (where .Site.RegularPages "Section" "in" .Site.Params.mainSections)) }}
+                        {{ if ne .Params.best true }}
+                            {{ partial "li.html" . }}
+                        {{ end }}
                     {{ end }}
                     {{ if gt $totalpostscount $latestpostscount }}
                         {{ range where .Site.Menus.main "Identifier" "in" .Site.Params.seeMoreSections }}
-                            <li class="post-item no-bullet">
+                            <li class="post-item no-bullet see-more">
                                 <a id="see-more" {{ printf "href=%q " .URL | safeHTMLAttr }}><span>See more&hellip;</span></a>
                             </li>
                         {{ end }}
