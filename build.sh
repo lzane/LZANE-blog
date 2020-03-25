@@ -3,5 +3,5 @@ if [ -d "public" ]; then
 fi
 
 hugo -t cocoa --baseURL="/"
-cp -r ./supplement/public/ public
+cp -r ./supplement/public/. public
 cp -r ./slide public
