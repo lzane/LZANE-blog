@@ -15,12 +15,15 @@ best: True
 
 通过例子解释清楚上面这张动图，让大家了解Git的内部原理。如果你已经能够看懂这张图了，下面的内容可能对你来说会比较基础。
 
-------
+> 这是一个系列的文章，计划包括三篇：
+> - 这才是真正的Git——Git内部原理【当前这篇文章】
+> - [这才是真正的Git——分支合并](https://www.lzane.com/tech/git-merge/)
+> - 这才是真正的Git——Git实用技巧（暂未完成）
+
+--
 
 > 本文是2019/11/24在深圳腾讯大厦2楼多功能厅举办的FCC前端分享会（freeCodeConf 2019 深圳站）上分享的文字版。
-
 > 视频：https://www.bilibili.com/video/av77252063
-
 > PPT：https://www.lzane.com/slide/git-under-the-hood
 
 ## 前言
@@ -204,7 +207,14 @@ $ cat .git/refs/heads/master
 
 --- 
 
-希望大家读完有所收获，下一篇文章会写一些我日常工作中觉得比较实用的Git技巧、经常被问到的问题、以及发生一些事故时的处理方法。
+希望大家读完有所收获。感兴趣的同学可以阅读同系列的其他文章
+- [这才是真正的Git——分支合并](https://www.lzane.com/tech/git-merge/)
+- 这才是真正的Git——Git实用技巧（暂未完成）
+
+## 讨论
+同样的内容也转发在下列地方：
+- 知乎: https://zhuanlan.zhihu.com/p/96631135
+- B站: https://www.bilibili.com/video/av77252063
 
 ## 参考
 - [Scott Chacon, Ben Straub - Pro Git-Apress (2014)](https://git-scm.com/book/en/v1) 免费，有兴趣继续深入的同学推荐阅读这本书
