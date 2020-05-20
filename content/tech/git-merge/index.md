@@ -12,7 +12,7 @@ best: True
 
 > 这是一个系列的文章，计划包括三篇：
 > 
-> - [这才是真正的Git——Git内部原理](https://www.lzane.com/tech/git-internal/)
+> - [这才是真正的Git——Git内部原理](/tech/git-internal/)
 > - 这才是真正的Git——分支合并【当前这篇文章】
 > - 这才是真正的Git——Git实用技巧（暂未完成）
 

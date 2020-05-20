@@ -18,7 +18,7 @@ best: True
 > 这是一个系列的文章，计划包括三篇：
 > 
 > - 这才是真正的Git——Git内部原理【当前这篇文章】
-> - [这才是真正的Git——分支合并](https://www.lzane.com/tech/git-merge/)
+> - [这才是真正的Git——分支合并](/tech/git-merge/)
 > - 这才是真正的Git——Git实用技巧（暂未完成）
 
 --
@@ -212,7 +212,7 @@ $ cat .git/refs/heads/master
 
 希望大家读完有所收获。感兴趣的同学可以阅读同系列的其他文章
 
-- [这才是真正的Git——分支合并](https://www.lzane.com/tech/git-merge/)
+- [这才是真正的Git——分支合并](/tech/git-merge/)
 - 这才是真正的Git——Git实用技巧（暂未完成）
 
 ## 讨论
