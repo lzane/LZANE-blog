@@ -97,3 +97,6 @@ avatar                 = "img/profile.jpeg" # path to image in static dir e.g im
 
 [blackfriday]
 hrefTargetBlank = true
+
+[markup.goldmark.renderer]
+unsafe= true
