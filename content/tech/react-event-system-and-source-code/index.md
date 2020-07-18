@@ -14,7 +14,7 @@ tags:
 ## TL;DR
 本文通过对React事件系统和源码进行浅析，回答“为什么React需要自己实现一套事件系统？”和“React的事件系统是怎么运作起来的？”两个问题。React为了性能和复用，采用了事件代理，池，批量更新，跨浏览器和跨平台兼容等思想，将事件监听挂载在document上，构造合成事件，并且在内部模拟了一套捕获和冒泡并触发回调函数的机制，实现了自己的一套事件系统。
 
-![动图](https://qncdnssl.lzane.com/2018-11-04-ccc.gif)
+![动图](./react_event_system.gif)
 
 - 如果你只有几分钟，建议你直接看[动画部分](#事件触发)。
 - 如果你有半个小时，你可以按顺序往下阅读，忽略源码部分。
@@ -134,7 +134,7 @@ class App extends React.Component {
 
 ## React为什么要自己实现一个事件系统？
 
-![react事件ppt.004](https://qncdnssl.lzane.com/2018-11-04-react%E4%BA%8B%E4%BB%B6ppt.004.jpeg)
+![react事件ppt.004](./2018-11-04-reactppt.004.jpeg)
 
 我认为这个问题主要是为了**性能**和**复用**两个方面来考虑。
 
@@ -156,7 +156,7 @@ ele.style.color='red';
 - 使得**不同平台只需要通过加入EventEmitter以及对应的Renderer就能使用相同的一个事件系统**，WEB平台上加入`ReactBrowserEventEmitter`，Native上加入`ReactNativeEventEmitter`。如下图，对于不同平台，React只需要替换掉左边部分，而右边`EventPluginHub`部分可以保持复用。
 - 而**对于不同的浏览器而言，React帮我们统一了事件，做了浏览器的兼容**，例如对于`transitionEnd`,`webkitTransitionEnd`,`MozTransitionEnd`和`oTransitionEnd`, React都会集合成`topAnimationEnd`，所以我们只用处理这一个标准的事件即可。
 
-![react事件ppt.005](https://qncdnssl.lzane.com/2018-11-04-react%E4%BA%8B%E4%BB%B6ppt.005.jpeg)
+![react事件ppt.005](./2018-11-04-reactppt.005.jpeg)
 
 简单而言，就与jQuery帮助我们解决了不同浏览器之间的兼容问一样，React更进一步，还帮我们统一了不同平台的兼容，使我们在开发的时候只需要考虑一个标准类型的事件即可。
 
@@ -166,7 +166,7 @@ ele.style.color='red';
 
 我们来看一下我们在JSX中写的`onClick`handler是怎么被记录到DOM结点上，并且在`document`上做监听的。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164011795.jpg)
+![](./2018-11-04-15413164011795.jpg)
 
 React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapturedEvent`这两个函数来注册的。如上图所示，当我们执行了`render`或者`setState`之后，React的Fiber调度系统会在最后commit到DOM树之前执行`trapBubbledEven`或`trapCapturedEvent`，在document节点上绑定回调（通过执行`addEventListener`在document结点上绑定对应的`dispatch`函数作为回调负责监听类型为`topLevelType`的事件）。
 
@@ -188,13 +188,13 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 我会大概用下图这种方式来解析代码，左边是我点击一个绑定了`handleClick`的按钮后的js调用栈，右边是每一步的代码，均已删除部分不影响理解的代码。希望通过这种方式能使大家更易理解React的事件触发机制。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164315532.jpg)
+![](./2018-11-04-15413164315532.jpg)
 
 当我们点击一个按钮是，`click`事件将会最终冒泡至document，并触发我们监听在document上的handler `dispatchEvent`，接着触发`batchedUpdates`。`batchedUpdates`这个格式的代码在React的源码里面会频繁的出现，基本上React将所有能够**批量处理**的事情都会先收集起来，再一次性处理。
 
 可以看到默认的`isBatching`是false的，当调用了一次`batchedUpdates`，`isBatching`的值将会变成true，此时如果在接下来的调用中有执行`batchedUpdates`的话，就会直接执行`handleTopLevel`,此时的`setState`等不会被更新到DOM上。直到调用栈重新回到第一次调用`batchedUpdates`的时候，才会将所有结果一起flush掉（更新到DOM上）。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413175673832.jpg)
+![](./2018-11-04-15413175673832.jpg)
 
 有的同学可能问调用栈中的`BatchedUpdates$1`是什么？或者浏览器的renderer和Native的renderer是如果挂在到React的事件系统上的?
 
@@ -202,26 +202,26 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 这里的`interactiveUpdates`和`batchedUpdates`的区别在上文已经解释过，这里就不再赘述。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164501870.jpg)
+![](./2018-11-04-15413164501870.jpg)
 
 `handleTopLevel`会调用`runExtractedEventsInBatch()`，这是React事件处理最重要的函数。如上面动画我们看到的，在`EventEmitter`里面做的事，其实主要就是这个函数的两步。
 
 - **第一步是根据原生事件合成合成事件，并且在vDOM上模拟捕获冒泡，收集所有需要执行的事件回调构成回调数组。**
 - **第二步是遍历回调数组，触发回调函数。**
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164560026.jpg)
+![](./2018-11-04-15413164560026.jpg)
 
 首先调用`extractEvents`，传入原生事件`e`，React事件系统根据可能的事件插件合成合成事件`Synthetic e`。 这里我们可以看到调用了`EventConstructor.getPooled()`，从事件池中去取一个合成事件对象，如果事件池为空，则新创建一个合成事件对象，这体现了React为了性能实现了**池**的思想。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164608984.jpg)
+![](./2018-11-04-15413164608984.jpg)
 
 然后传入Propagator，在vDOM上模拟捕获和冒泡，并收集所有需要执行的事件回调和对应的结点。`traverseTwoPhase`模拟了捕获和冒泡的两个阶段，这里实现很巧妙，简单而言就是正向和反向遍历了一下数组。接着对每一个结点，调用`listenerAtPhase`取出事件绑定时挂载在结点上的回调函数，把它加入回调数组中。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164659157.jpg)
+![](./2018-11-04-15413164659157.jpg)
 
 接着遍历所有合成事件。这里可以看到当一个事件处理完的时候，React会调用`event.isPersistent()`来查看这个合成事件是否需要被持久化，如果不需要就会释放这个合成事件，这也就是为什么当我们需要异步读取操作一个合成事件的时候，需要执行`event.persist()`，不然React就是在这里释放掉这个事件。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164725789.jpg)
+![](./2018-11-04-15413164725789.jpg)
 
 最后这里就是回调函数被真正触发的时候了，取出回调数组`event._dispatchListeners`，遍历触发回调函数。并通过`event.isPropagationStopped()`这一步来模拟停止冒泡。这里我们可以看到，React在收集回调数组的时候并不会去管我们是否调用了`stopPropagation`，而是会在触发的阶段才会去检查是否需要停止冒泡。
 
@@ -254,7 +254,7 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 具体可以看一下下面的这个调用图，应该也很好理解，如果有不能理解的地方，请在下面留言，我会尽我所能解释清楚。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413164911702.jpg)
+![](./2018-11-04-15413164911702.jpg)
 
 -----------
 
@@ -268,11 +268,11 @@ React对于大部分事件的绑定都是使用`trapBubbledEvent`和`trapCapture
 
 且在JS调用栈被弹空时候，必定是已经将结果更新到DOM上面了（同步渲染）。这也就是setState相对于浏览器是同步的含义。如下图所示
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413204706161.jpg)
+![](./2018-11-04-15413204706161.jpg)
 
 异步渲染的流程图大概如下图所示，最近一次思考这个问题的时候，发现如果现在是异步渲染的话，那我们的例子二将变成偶现的坑😂，因为如果`setState`的结果还没被更新到DOM上，浏览器就不会触发submit事件。
 
-![](https://qncdnssl.lzane.com/2018-11-04-15413165006172.jpg)
+![](./2018-11-04-15413165006172.jpg)
 
 不过React团队已经为异步渲染的愿景开发了两年，且React16中已经采用了Fiber reconciliation和提供了异步渲染的api `unstable_xxx`，相信在React17中我们可以享受到异步渲染带来的性能提升，感谢React团队。
 
