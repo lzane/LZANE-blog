@@ -5,7 +5,6 @@ tags:
 - Tech
 - Git
 slug: git-merge
-best: True
 ---
 
 “合并前文件还在的，合并后就不见了”、“我遇到Git合并的bug了” 是两句经常听到的话，但真的是Git的bug么？或许只是你的预期不对。本文通过讲解三向合并和Git的合并策略，step by step介绍Git是怎么做一个合并的，让大家对Git的合并结果有一个准确的预期，并且避免发生合并事故。
@@ -14,7 +13,7 @@ best: True
 > 
 > - [这才是真正的Git——Git内部原理](/tech/git-internal/)
 > - 这才是真正的Git——分支合并【当前这篇文章】
-> - 这才是真正的Git——Git实用技巧（暂未完成）
+> - [这才是真正的Git——Git实用技巧](/tech/git-tips/)
 
 ## 故事时间
 在开始正文之前，先来听一下这个故事。
@@ -164,7 +163,10 @@ rebase还有一个非常好用的东西叫interactive模式，使用方法是`gi
 
 Git有很多种分支合并策略，本文介绍了Fast-forward、Recursive、Ours/Theirs、Octopus合并策略以及三向合并。掌握这些合并策略以及他们的使用场景可以让你避免发生一些合并问题，并对合并结果有一个准确的预期。
 
-希望这篇文章对大家有用，感兴趣的同学可以逛一逛我的博客 www.lzane.com 或看看我的其他文章。
+希望大家读完有所收获。感兴趣的同学可以阅读同系列的其他文章
+
+- [这才是真正的Git——Git内部原理](/tech/git-internal/)
+- [这才是真正的Git——Git实用技巧](/tech/git-tips/)
 
 ## 参考
 - 三向合并 http://blog.plasticscm.com/2016/02/three-way-merging-look-under-hood.html
