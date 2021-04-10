@@ -61,6 +61,7 @@ section.main .content .page-heading {
 
 section.main .container .content .post-item {
     align-items: flex-start;
+    margin-bottom: 5px;
 }
 
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>microtasks demo</title>
+  </head>
+  <body></body>
+  <script>
+    document.body.innerHTML = `
+      <button id="btn" type="button">btn</button>
+    `;
+
+    const button = document.getElementById("btn");
+
+    const heavy = () => {
+      for (let i = 0; i < 10000000; i++) {}
+    };
+
+    button.addEventListener("click", function listener1() {
+      Promise.resolve().then(function resolver1() {
+        console.log("promise resolved 1");
+        heavy();
+      });
+
+      console.log("listener 1");
+      heavy();
+    });
+
+    button.addEventListener("click", function listener2() {
+      Promise.resolve().then(function resolver2() {
+        console.log("promise resolved 2");
+        heavy();
+      });
+
+      console.log("listener 2");
+      heavy();
+    });
+
+    button.click();
+  </script>
+</html>
