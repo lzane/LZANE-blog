@@ -302,6 +302,6 @@ Event Loop（事件循环）是前端工程师经常讨论到的话题，往深�
 在探索的过程中还使用了一些工具，如 Chrome Devtool Performance、Chrome tracing、Chromium Code Search 等，希望感兴趣的同学，也可以使用这些工具，更深入的探索浏览器内部原理。
 
 # 附件
-- [Demo 例子的 HTML](https://raw.githubusercontent.com/lzane/LZANE-blog/article/microtask/content/tech/event-loop-microtask/demo/microtasks.html)
-- [Demo 例子的 Chrome Devtool Performace Profile](https://raw.githubusercontent.com/lzane/LZANE-blog/article/microtask/content/tech/event-loop-microtask/demo/performance%20profile.json)
-- [Demo 例子的 Chrome Tracing Profile （筛选使用 Renderer (pid 38256) ）](https://raw.githubusercontent.com/lzane/LZANE-blog/article/microtask/content/tech/event-loop-microtask/demo/tracing%20profile.gz)
+- [Demo 例子的 HTML](https://raw.githubusercontent.com/lzane/LZANE-blog/master/content/tech/event-loop-microtask/demo/microtasks.html)
+- [Demo 例子的 Chrome Devtool Performace Profile](https://raw.githubusercontent.com/lzane/LZANE-blog/master/content/tech/event-loop-microtask/demo/performance%20profile.json)
+- [Demo 例子的 Chrome Tracing Profile （筛选使用 Renderer (pid 38256) ）](https://raw.githubusercontent.com/lzane/LZANE-blog/master/content/tech/event-loop-microtask/demo/tracing%20profile.gz)
