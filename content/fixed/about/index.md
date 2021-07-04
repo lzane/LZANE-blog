@@ -5,6 +5,8 @@ draft: false
 url: 'about'
 ---
 
+![](mine.jpeg)
+
 **我是谁 / Who I am:**
 
 我叫李泽帆 (@lzane)，目前的工作是一名前端工程师，就职于[腾讯CDC](https://cdc.tencent.com/)。热爱IT技术，特别专注于web开发和数据科学，想成为一个终生学习者。
