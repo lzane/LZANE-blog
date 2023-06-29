@@ -11,7 +11,7 @@ url: 'talk'
 
 DSL（领域特定语言）的应用十分广泛，在某些场景下能够大幅度降低成本，提升效率。本次分享主要介绍腾讯问卷将DSL落地在问卷逻辑编写的经验，包括落地前中后期的问题， 如哪些是适合DSL落地的业务场景？DSL语法应该如何设计？parser应该如何设计？编辑器等配套设施应当如何搭建等等，让你更加深入的理解DSL，帮助业务降本增效。
 
-文章 / [PPT](https://www.slideshare.net/zanelee2/tweb) / [视频（主办方收费）](https://ke.qq.com/course/3795873)
+[文章](/tech/create-a-dsl) / [PPT](https://www.slideshare.net/zanelee2/tweb) / [视频](https://www.bilibili.com/video/BV1nV411g7nb)
 
 ------
 
