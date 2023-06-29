@@ -1,0 +1,50 @@
+name: build & deply
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+        
+    steps:
+    - name: 检出仓库代码
+      uses: actions/checkout@master
+
+    - name: 安装Hugo依赖
+      run: |
+        wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb
+        sudo dpkg -i /tmp/hugo.deb
+
+    - name: Hugo构建
+      run: |
+        if [ -d "public" ]; then
+          rm -rf public
+        fi
+        hugo -t cocoa --baseURL="/"
+        cp -r ./supplement/public/. public
+        cp -r ./slide public
+        
+    - name: 安装腾讯云依赖
+      run: |
+        sudo pip install coscmd
+        sudo pip install tccli
+
+    - name: 配置腾讯云依赖
+      env:
+        SECRET_ID: ${{ secrets.TCLOUD_API_ID }}
+        SECRET_KEY: ${{ secrets.TCLOUD_API_KEY }}
+        BUCKET: blog-1251731749
+        REGION: ap-guangzhou 
+      run: |
+        coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+        tccli configure set secretId $SECRET_ID
+        tccli configure set secretKey $SECRET_KEY
+        tccli configure set region $REGION
+
+    - name: 上传到腾讯云COS并刷新CDN
+      run: |
+        coscmd upload -rfs --delete ./public/ /
+        tccli cdn PurgePathCache --cli-unfold-argument --Paths https://www.lzane.com/ --FlushType flush
