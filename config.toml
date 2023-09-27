@@ -77,7 +77,7 @@ selfintro              = "软件工程师，专注Web开发和数据科学 | Be 
 # telegram               = "//t.me/lzane"
 
 highlightjs            = true
-# highlightjslanguages = ["go"]                        # additional languages not included in the "common" set
+highlightjslanguages = ["go","x86asm"]                        # additional languages not included in the "common" set
 # highlightjsStyle     = "darcula"
 
 piwik                  = false                         # If true, Piwik integration is enabled

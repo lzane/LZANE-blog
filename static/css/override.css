@@ -13,6 +13,8 @@ section.header nav {
 section.main .content .markdown pre code{
     white-space: pre;
     overflow-wrap: normal;
+    display: block;
+    overflow-x: auto;
 }
 
 section.main .content .markdown h3 {
